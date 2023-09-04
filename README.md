@@ -66,7 +66,7 @@ import { sendAlertAction } from "./actions";
 export default function AlertForm() {
   // When the action finishes successfully, it will revalidate [/, /somePath, /someOtherPath]
   const { run, data, error, isRunning } = useSafeAction({
-    sendAlertAction,
+    action: sendAlertAction,
     persistData: true, // When false, `data` will be set to null before the action is ran. When true, `data` will only change if the action is finished.
     revalidationPaths: ["/somePath", "/someOtherPaths"],
     revalidateCurrentPath: true, // Revalidates the current path (`usePathname()`) Default: false
