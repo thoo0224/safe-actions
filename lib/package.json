@@ -1,0 +1,39 @@
+{
+  "name": "@thoo0224/safe-actions",
+  "version": "0.0.7",
+  "description": "Safe actions for NextJS server actions using Zod.",
+  "private": false,
+  "scripts": {
+    "publish-package": "rimraf ./dist && pnpm build && npm publish --access public",
+    "build": "tsup"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./server": "./dist/server.mjs",
+    "./client": "./dist/client.mjs"
+  },
+  "keywords": [
+    "nextjs",
+    "actions",
+    "server actions",
+    "safe actions",
+    "zod actions"
+  ],
+  "author": "thoo0224",
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.22.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.21",
+    "rimraf": "^5.0.1",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "next": "^13.4.19",
+    "react": "^18.2.0"
+  }
+}
