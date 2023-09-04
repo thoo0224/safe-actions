@@ -31,14 +31,11 @@ export function useSafeAction<InputType extends ZodTypeAny, ResponseType>(
   const [isRunning, setIsRunning] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  let revalidationPaths: string[] = [];
   if (hasOptions && action.revalidateCurrentPage) {
     const currentPath = usePathname();
-    revalidationPaths = [...revalidationPaths, currentPath];
-  }
+    if (!action.revalidationPaths) action.revalidationPaths = [];
 
-  if (hasOptions && action.revalidationPaths) {
-    revalidationPaths = [...revalidationPaths, ...action.revalidationPaths];
+    action.revalidationPaths.push(currentPath);
   }
 
   const run: SafeAction<InputType, SafeActionData<ResponseType> | null> =
@@ -52,7 +49,12 @@ export function useSafeAction<InputType extends ZodTypeAny, ResponseType>(
         }
 
         try {
-          const result = await doAction.current(input, revalidationPaths);
+          const result = await doAction.current(
+            input,
+            hasOptions && action.revalidationPaths
+              ? action.revalidationPaths
+              : []
+          );
           setData(result);
           setIsRunning(false);
 
