@@ -15,6 +15,9 @@
   </p>
 </div>
 
+### This lib is dead and this one is much better: 
+https://next-safe-action.dev/
+
 ### Installation
 
 ```console
